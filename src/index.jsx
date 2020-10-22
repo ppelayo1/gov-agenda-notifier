@@ -27,7 +27,7 @@ const client = new ApolloClient({
     cache: new InMemoryCache()
   });
 
-function SampleQuery() {
+function SampleGraphqlQuery() {
     const { loading, error, data } = useQuery(GET_ALL_MEETINGS_WITH_ITEMS);
 
     if (loading) console.log('THE Loading: ', loading);
@@ -69,7 +69,7 @@ function App() {
                         </Switch>
                         <NavigationMenu toggleMenu={toggleMenu} showMenu={showMenu}/>
                     </Router>
-                    <SampleQuery/>
+                    <SampleGraphqlQuery/>
                 </div>
             </ApolloProvider>
         </React.StrictMode>
