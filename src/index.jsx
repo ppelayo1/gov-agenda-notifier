@@ -5,7 +5,8 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-} from "react-router-dom";
+} from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 import './index.scss';
 
@@ -16,6 +17,7 @@ import NavigationMenu from './components/Header/NavigationMenu';
 import Subscribe from './components/Subscribe/Subscribe';
 import MeetingItem from './components/MeetingItem/MeetingItem';
 import AdminView from './components/AdminView/AdminView';
+import AdminLogin from './components/AdminLogin/AdminLogin';
 
 import { ApolloClient, InMemoryCache, ApolloProvider, useQuery } from '@apollo/client';
 import { GET_ALL_MEETINGS_WITH_ITEMS } from './graphql/graphql';
@@ -59,18 +61,11 @@ function App() {
                         of them to render at a time
                         */}
                         <Switch>
-                            <Route exact path="/">
-                                <MeetingView />
-                            </Route>
-                            <Route path="/subscribe/:id">
-                                <Subscribe />
-                            </Route>
-                            <Route path="/meeting-item/:id">
-                                <MeetingItem />
-                            </Route>
-                            <Route exact path="/admin">
-                                <AdminView />
-                            </Route>
+                            <Route exact path="/" component={MeetingView}/>
+                            <Route path="/subscribe/:id" component={Subscribe}/>
+                            <Route path="/meeting-item/:id" component={MeetingItem}/>
+                            <Route path="/admin/login" component={AdminLogin}/>
+                            <PrivateRoute exact path="/admin" component={AdminView}/>
                         </Switch>
                         <NavigationMenu toggleMenu={toggleMenu} showMenu={showMenu}/>
                     </Router>
