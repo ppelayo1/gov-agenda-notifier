@@ -34,7 +34,6 @@ function AdminLogin() {
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
             cookiePolicy={'single_host_origin'}
-            style={{backgroundColor: '#CC9966'}}
             isSignedIn={true}
           />
           
