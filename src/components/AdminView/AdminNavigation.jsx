@@ -34,7 +34,7 @@ const LINKS = [
 function AdminNavigation() {
   return (
     <div className="admin-navigation">
-      <img className="logo" src={cityLogo} />
+      <img className="logo" src={cityLogo} alt="Logo of the City of San José" />
 
       <div className="links">
         <ul>
