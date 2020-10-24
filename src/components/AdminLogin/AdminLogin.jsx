@@ -29,7 +29,7 @@ function AdminLogin() {
         
         <div className="login-buttons-wrapper">
           <GoogleLogin
-            clientId="555731815346-kl7jr7pd0gh54etj8b74u64dflglshq8.apps.googleusercontent.com"
+            clientId="1055991846742-sk7vimca6aupub41gje6jcfj0d02cn5e.apps.googleusercontent.com"
             buttonText="Sign in with Google"
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
@@ -38,7 +38,7 @@ function AdminLogin() {
           />
           
           <MicrosoftLogin 
-            clientId={'xyz'} 
+            clientId={'b3eb70dd-f3ec-4604-bc4c-611d78568158'} 
             authCallback={responseMicrosoft} 
             // buttonTheme="dark"
             isSignedIn={true}
