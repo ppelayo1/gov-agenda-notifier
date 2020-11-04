@@ -1,7 +1,8 @@
 {
-    "name": "gov-agenda-notifier-heroku",
+    "name": "gov-agenda-notifier-infrastructure",
     "version": "0.1.0",
-    "scripts": {
-      "postinstall": "npm install --prefix frontend"
+    "devDependencies": {
+        "serverless": "^2.10.0",
+        "serverless-pseudo-parameters": "^2.5.0"
     }
 }

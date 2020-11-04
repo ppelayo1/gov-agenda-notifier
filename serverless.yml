@@ -1,0 +1,71 @@
+service: gov-agenda-notifier
+
+# This allows us to have the smallest zipped package bundles
+# by manually including in them what we're interested in
+package:
+  individually: true
+  exclude:
+    - "*/**"
+    # https://forum.serverless.com/t/how-to-ignore-directories-and-files-for-a-deployment/2624/4
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-west-1
+  environment:
+    IS_LAMBDA: true
+    NODE_ENV: development
+
+    TWILIO_AUTH_TOKEN: ${self:custom.TWILIO.AUTH_TOKEN} 
+    TWILIO_ACCOUNT_SID: ${self:custom.TWILIO.ACCOUNT_SID} 
+    TWILIO_PHONE_NUMBER: ${self:custom.TWILIO.PHONE_NUMBER} 
+
+    PGHOST: ${self:custom.POSTGRESQL.HOST} 
+    PGPORT: ${self:custom.POSTGRESQL.PORT}
+    PGUSER: ${self:custom.POSTGRESQL.USER}
+    PGPASSWORD: ${self:custom.POSTGRESQL.PASS}
+    PGDATABASE: ${self:custom.POSTGRESQL.DBNAME}
+
+custom:
+  TWILIO:
+    AUTH_TOKEN: ${file(./secrets.json):TWILIO_AUTH_TOKEN}
+    ACCOUNT_SID: ${file(./secrets.json):TWILIO_ACCOUNT_SID}
+    PHONE_NUMBER: ${file(./secrets.json):TWILIO_PHONE_NUMBER}
+  POSTGRESQL:
+    USER: ${file(./secrets.json):PGUSER}
+    PASS: ${file(./secrets.json):PGPASSWORD}
+    DBNAME: ${file(./secrets.json):PGDATABASE}
+    PORT:
+      Fn::GetAtt: [PostgreSqlRDSInstance, Endpoint.Port]
+    HOST:
+      Fn::GetAtt: [PostgreSqlRDSInstance, Endpoint.Address]
+    VPC_CIDR: 10
+
+plugins:
+  - serverless-pseudo-parameters
+resources:
+  Resources:
+    ServerlessInternetGateway: ${file(./infrastructure/ServerlessInternetGateway.yml)}
+    ServerlessVPC: ${file(./infrastructure/ServerlessVPC.yml)}
+    ServerlessVPCGA: ${file(./infrastructure/ServerlessVPCGA.yml)}
+    ServerlessSubnetA: ${file(./infrastructure/ServerlessSubnetA.yml)}
+    ServerlessSubnetB: ${file(./infrastructure/ServerlessSubnetB.yml)}
+    ServerlessSubnetGroup: ${file(./infrastructure/ServerlessSubnetGroup.yml)}
+    ServerlessSecurityGroup: ${file(./infrastructure/ServerlessSecurityGroup.yml)}
+    PostgreSqlRDSInstance: ${file(./infrastructure/PostgreSqlRDSInstance.yml)}
+
+functions:
+  graphql:
+    handler: backend/handler.graphqlHandler
+    events:
+    - http:
+        path: graphql
+        method: post
+        cors: true
+    - http:
+        path: graphql
+        method: get
+        cors: true
+    package:
+      include:
+        backend/**
