@@ -3,6 +3,8 @@ const { Client } = require('pg');
 module.exports = (logger) => {
   const module = {};
 
+  // TODO: Implement DB connection pools
+  logger.info('Creating DB client');
   const client = new Client({
     host: process.env.PGHOST,
     port: process.env.PGPORT,
@@ -11,7 +13,7 @@ module.exports = (logger) => {
     password: process.env.PGPASSWORD,
   });
 
-  // TODO: Implement DB connection pools
+  logger.info('Conneting to DB');
   client.connect((err) => {
     if (err) {
       logger.error(`DB connection error: ${err.stack}`);
