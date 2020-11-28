@@ -10,6 +10,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "pg": "^8.3.3",
+    "serverless-http": "^2.6.0",
     "winston": "^3.3.3"
   },
   "devDependencies": {

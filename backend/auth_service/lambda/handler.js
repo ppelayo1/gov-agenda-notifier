@@ -1,6 +1,7 @@
 require('dotenv').config();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3002;
+const serverless = require('serverless-http');
 const express = require('express');
 const logger = require('./utilities/logger');
 
@@ -10,6 +11,11 @@ app.get('/', (req, res) => {
   res.send('Hello World');
 });
 
-app.listen(PORT, () => {
-  logger.info(`Auth Service running on: http://localhost:${PORT}/`);
-});
+if (process.env.IS_LAMBDA) {
+  logger.info('Exporting lambda handler');
+  exports.uploadHandler = serverless(app);
+} else {
+  app.listen(PORT, () => {
+    logger.info(`🚀 Auth service running on: http://localhost:${PORT}/`);
+  });
+}
