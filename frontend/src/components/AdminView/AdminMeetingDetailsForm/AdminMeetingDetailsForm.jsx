@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import './AdminMeetingDetailsForm.scss';
 
 function AdminMeetingDetailsForm() {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors } = useForm({ mode: 'onTouched' });
   const onSubmit = (data) => {
     console.log(data);
   }
@@ -76,15 +76,6 @@ function AdminMeetingDetailsForm() {
       <section className="form-section">
         <h3 className="form-title">Meeting Broadcast</h3>
         <div className="form-field">
-          <label for="meeting-details-channel">Channel</label>
-          <input
-            id="meeting-details-channel"
-            name="channel"
-            type="number"
-            ref={register}
-          />
-        </div>
-        <div className="form-field">
           <label for="meeting-details-broadcast-link">City of San José Link</label>
           <input
             id="meeting-details-broadcast-link"
@@ -134,6 +125,8 @@ function AdminMeetingDetailsForm() {
           />
         </div>
       </section>
+
+      <input type="submit"/>
     </form>
   )
 }
