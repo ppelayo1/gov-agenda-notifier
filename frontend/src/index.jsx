@@ -19,6 +19,7 @@ import MeetingView from './components/MeetingView/MeetingView';
 import Subscribe from './components/Subscribe/Subscribe';
 import MeetingItem from './components/MeetingItem/MeetingItem';
 import AdminView from './components/AdminView/AdminView';
+import AdminMeetingDetailsForm from './components/AdminView/AdminMeetingDetailsForm/AdminMeetingDetailsForm';
 import AdminUploadView from './components/AdminView/AdminUploadView/AdminUploadView';
 
 import * as serviceWorker from './serviceWorker';
@@ -65,7 +66,7 @@ function App() {
               <Route path={`${AdminPaths.EDIT_MEETING}/:id`}>
                 <AdminView
                   headerText="Edit Meeting Details"
-                  component={() => <div>Placeholder for Edit Meeting</div>}
+                  component={AdminMeetingDetailsForm}
                 />
               </Route>
 
