@@ -11,7 +11,7 @@ function AdminMeetingDetailsForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <section className="form-section">
-        <h3 className="form-title">Basic Information</h3>
+        <h4 className="form-title">Basic Information</h4>
         <div className="form-field">
           <label for="meeting-details-date">Date</label>
           <input
@@ -43,7 +43,7 @@ function AdminMeetingDetailsForm() {
       </section>
 
       <section className="form-section">
-        <h3 className="form-title">Virtual Meeting Information</h3>
+        <h4 className="form-title">Virtual Meeting Information</h4>
         <div className="form-field">
           <label for="meeting-details-link">Virtual Meeting Link</label>
           <input
@@ -74,7 +74,7 @@ function AdminMeetingDetailsForm() {
       </section>
 
       <section className="form-section">
-        <h3 className="form-title">Meeting Broadcast</h3>
+        <h4 className="form-title">Meeting Broadcast</h4>
         <div className="form-field">
           <label for="meeting-details-broadcast-link">City of San José Link</label>
           <input
@@ -96,7 +96,7 @@ function AdminMeetingDetailsForm() {
       </section>
       
       <section className="form-section">
-        <h3 className="form-title">Public Comment</h3>
+        <h4 className="form-title">Public Comment</h4>
         <div className="form-field">
           <label for="meeting-details-email-before">Email - Before Meeting</label>
           <input

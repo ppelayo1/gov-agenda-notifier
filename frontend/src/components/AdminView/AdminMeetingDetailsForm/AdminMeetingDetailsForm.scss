@@ -1,0 +1,44 @@
+@import '../../../utils/_colors.scss';
+
+form {
+  background: $blueSky;
+
+  padding: 0 45px 100px;
+  .form-section {
+    .form-title {
+      font-size: 1.2em;
+      letter-spacing: 0.03em;
+    }
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      margin: 20px 0;
+      max-width: 600px;
+      label {
+        font-size: 0.8em;
+        letter-spacing: 0.03em;
+        margin-bottom: 5px;
+      }
+      input, select {
+        height: 30pt;
+        border: none;
+        &:hover {
+          box-shadow: 0.5px 1px 3px $cloudy;
+        }
+      }
+      input {
+        outline-color: $cityBronze;
+        padding: 0.15em 1.2em;
+      }
+      select {
+        padding: 0.5em 0.5em;
+        cursor: pointer;
+        font-size: 0.9em;
+        max-width: 200px;
+        background-color: $cityBlue;
+        color: $offWhite;
+        background-position-x: center;
+      }
+    }
+  }
+}
