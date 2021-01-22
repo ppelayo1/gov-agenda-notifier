@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-const GET_ALL_MEETINGS_WITH_ITEMS = gql`
+export const GET_ALL_MEETINGS_WITH_ITEMS = gql`
   query {
     getAllMeetingsWithItems {
       meeting {
@@ -17,4 +17,17 @@ const GET_ALL_MEETINGS_WITH_ITEMS = gql`
   }
 `;
 
-export default GET_ALL_MEETINGS_WITH_ITEMS;
+export const GET_MEETING_DETAILS = gql`
+  query ($meetingId: Int!) {
+    getMeeting(id: $meetingId) {
+      id
+      status
+      meeting_type
+      created_timestamp
+      updated_timestamp
+      meeting_start_timestamp
+      meeting_end_timestamp
+      virtual_meeting_url
+    }
+  }
+`;

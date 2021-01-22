@@ -39,7 +39,7 @@ function AdminView({ headerText, component: ComponentToRender }) {
   const [meetingId, setMeetingId] = useState(id);
   const [currentMeeting, setCurrentMeeting] = useState({});
   const [meetingIdList, setMeetingIdList] = useState([]);
-
+  
   /**
    * Fetch all meeting ids on load
    */
@@ -64,7 +64,6 @@ function AdminView({ headerText, component: ComponentToRender }) {
     }
     getMeeting();
   }, [meetingId, setMeetingId]);
-
   return (
     <div className="admin-view">
       <AdminNavigation meetingId={meetingId} />
@@ -76,7 +75,7 @@ function AdminView({ headerText, component: ComponentToRender }) {
           meetingId={meetingId}
           setMeetingId={setMeetingId}
         />
-        <ComponentToRender meeting={currentMeeting} />
+        <ComponentToRender meeting={currentMeeting} currentMeetingId={meetingId}/>
       </div>
     </div>
   );

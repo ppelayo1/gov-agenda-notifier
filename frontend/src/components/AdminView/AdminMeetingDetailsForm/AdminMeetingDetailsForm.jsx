@@ -1,10 +1,22 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useQuery } from '@apollo/client';
+import { GET_MEETING_DETAILS } from '../../../graphql/graphql';
 import './AdminMeetingDetailsForm.scss';
 
-function AdminMeetingDetailsForm() {
+function AdminMeetingDetailsForm({ meeting }) {
+  const { loading, error, data, refetch } = useQuery(GET_MEETING_DETAILS, { variables: { meetingId: meeting.id } });
+
+  // // eslint-disable-next-line no-console
+  // if (loading) console.log('THE Loading: ', loading);
+  // // eslint-disable-next-line no-console
+  // if (error) console.log('THE Error: ', error);
+  // // eslint-disable-next-line no-console
+  // console.log(data);
+
   const { register, handleSubmit, errors } = useForm({ mode: 'onTouched' });
-  const onSubmit = (data) => {
+  const onSubmit = () => {
+    refetch();
     console.log(data);
   }
   
