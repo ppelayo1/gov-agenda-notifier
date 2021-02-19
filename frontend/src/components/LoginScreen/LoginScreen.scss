@@ -1,0 +1,51 @@
+@import '../../utils/_colors.scss';
+@import '../../utils/_fonts.scss';
+
+.login-wrapper {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 0 0 4%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-logo {
+  max-width: 200px;
+}
+
+.login-box {
+  margin-top: 80px;
+  width: 640px;
+  height: 385px;
+  background-color: $cityBlue;
+  border-radius: 8px;
+  .login-text {
+    margin-top: 75px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 28px;
+    color: $offWhite;
+    text-align: center;
+    letter-spacing: 0.12px;
+    line-height: 42px;
+  }
+  hr {
+    width: 365px;
+    border-width: 2px;
+    border-color: $cityBronze;
+    margin: 30px auto;
+  }
+  .login-buttons-wrapper {
+    max-width: 215px;
+    height: 90px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+}
