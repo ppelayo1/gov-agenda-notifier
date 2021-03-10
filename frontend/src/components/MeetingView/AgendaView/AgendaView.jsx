@@ -8,6 +8,7 @@ import AgendaGroup from './AgendaGroup';
 import Search from '../../Header/Search';
 import MultipleSelectionBox from '../../MultipleSelectionBox/MultipleSelectionBox';
 import MeetingItemStates from '../../../constants/MeetingItemStates';
+import { compareObjectTimestamps } from '../../../utils/timestampHelper';
 
 /**
  * Used to display a list of a meeting's agenda items and controls to
@@ -65,7 +66,8 @@ function AgendaView({ meeting }) {
     // and values as the items themselves. Inside such items there can be a property `items` which
     // is an array of agenda items whose `parent_meeting_item_id` is equal to the corresponding key.
     const itemsWithNoParent = meetingItems.filter((item) => item.parent_meeting_item_id === null);
-    const itemsWithParent = meetingItems.filter((item) => item.parent_meeting_item_id !== null);
+    const itemsWithParent = meetingItems.filter((item) => item.parent_meeting_item_id !== null)
+      .sort(compareObjectTimestamps('item_start_timestamp'));
 
     const agendaGroups = {};
     itemsWithNoParent.forEach((item) => {
@@ -84,9 +86,10 @@ function AgendaView({ meeting }) {
     return agendaGroups;
   };
 
-  const renderedItems = showCompleted
-    ? meeting.items
-    : meeting.items.filter((item) => item.status !== MeetingItemStates.COMPLETED);
+  const renderedItems = (showCompleted
+    ? [...meeting.items]
+    : meeting.items.filter((item) => item.status !== MeetingItemStates.COMPLETED)
+  ).sort(compareObjectTimestamps('item_start_timestamp'));
   const agendaGroups = groupMeetingItems(renderedItems);
 
   return (

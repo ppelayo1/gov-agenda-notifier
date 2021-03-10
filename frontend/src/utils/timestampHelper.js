@@ -15,6 +15,15 @@ export function isFutureTimestamp(timestamp) {
   return dayjs().isBefore(dayjs(parseInt(timestamp, 10)));
 }
 
+export function compareObjectTimestamps(fieldName) {
+  // Used in sort functions to compare two objects with timestamp fields.
+  return function compare(objectA, objectB) {
+    // Takes two objects with timestamp field (Unix timestamp in milliseconds as String)
+    // and returns the difference between two timestamps.
+    return parseInt(objectA[fieldName], 10) - parseInt(objectB[fieldName], 10);
+  };
+}
+
 /**
  * Takes an array of meeting objects and groups them by month/year after
  * converting their timestamps.
@@ -72,10 +81,7 @@ export function groupMeetingsByDate(meetings) {
     for (let i = 0; i < 12; i += 1) {
       if (yearMeetings[i] !== undefined) {
         const sortedMeetings = yearMeetings[i]
-          .sort((a, b) =>
-            parseInt(a.meeting_start_timestamp, 10) -
-            parseInt(b.meeting_start_timestamp, 10)
-            );
+          .sort(compareObjectTimestamps('meeting_start_timestamp'));
 
         const monthObj = {
           year,
