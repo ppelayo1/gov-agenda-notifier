@@ -23,12 +23,13 @@ import MeetingView from './components/MeetingView/MeetingView';
 import Subscribe from './components/Subscribe/Subscribe';
 import AdminView from './components/AdminView/AdminView';
 import AdminUploadView from './components/AdminView/AdminUploadView/AdminUploadView';
+import EmailConfirmPage from './components/EmailConfirmPage/EmailConfirmPage';
 import Footer from './components/Footer/Footer';
 import LoginScreen from './components/LoginScreen/LoginScreen';
 
 import * as serviceWorker from './serviceWorker';
 
-import { GET_ALL_MEETINGS_WITH_ITEMS, CREATE_SUBSCRIPTION } from './graphql/graphql';
+import { GET_ALL_MEETINGS_WITH_ITEMS, CREATE_SUBSCRIPTIONS } from './graphql/graphql';
 import AdminPaths from './constants/AdminPaths';
 
 import './i18n';
@@ -53,14 +54,14 @@ function SampleQuery() {
 }
 
 function SubscriptionPage() {
-  const [createSubscription, { loading, error, data }] = useMutation(CREATE_SUBSCRIPTION);
+  const [createSubscriptions, { loading, error, data }] = useMutation(CREATE_SUBSCRIPTIONS);
 
   return (
     <Subscribe
-      createSubscription={createSubscription}
+      createSubscriptions={createSubscriptions}
       isLoading={loading}
       error={error}
-      subscription={data && data.createSubscription}
+      subscriptions={data && data.createSubscriptions}
     />
   );
 }
@@ -77,11 +78,14 @@ function App() {
               <Route exact path="/">
                 <MeetingListView />
               </Route>
-              <Route path="/subscribe/:meetingId/:itemId">
+              <Route path="/subscribe">
                 <SubscriptionPage />
               </Route>
               <Route path="/meeting/:id">
                 <MeetingView />
+              </Route>
+              <Route path="/confirm/:token/:action">
+                <EmailConfirmPage />
               </Route>
 
               {/* <Route exact path="/participate/join">
