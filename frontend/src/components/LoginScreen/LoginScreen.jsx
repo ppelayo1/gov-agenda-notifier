@@ -29,7 +29,6 @@ function AdminLogin() {
         <hr/>
         
         <div className="login-buttons-wrapper">
-          <LoginButton />
           <GoogleLogin
             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
             buttonText="Sign in with Google"
@@ -37,7 +36,7 @@ function AdminLogin() {
             onFailure={responseGoogle}
             cookiePolicy={'single_host_origin'}
             isSignedIn={true}
-            render={(renderProps) => (<button onClick={renderProps.onClick} disabled={renderProps.disabled}>Sign In with Google</button>)}
+            render={(renderProps) => (<LoginButton onClick={renderProps.onClick} disabled={renderProps.disabled}>Google</LoginButton>)}
           />
           
           <MicrosoftLogin 
@@ -45,7 +44,7 @@ function AdminLogin() {
             authCallback={responseMicrosoft} 
             // buttonTheme="dark"
             isSignedIn={true}
-            children={<button>Sign In with Microsoft</button>}
+            children={<LoginButton>Microsoft</LoginButton>}
           />
         </div>
       </div>

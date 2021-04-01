@@ -18,6 +18,7 @@ import { ReactComponent as EditIcon } from '../assets/icons/edit-24px.svg';
 import { ReactComponent as EmailIcon } from '../assets/icons/email-24px.svg';
 import { ReactComponent as FeedbackIcon } from '../assets/icons/feedback-24px.svg';
 import { ReactComponent as FormatListNumberedIcon } from '../assets/icons/format_list_numbered-24px.svg';
+import { ReactComponent as GoogleGLogo } from '../assets/icons/google-g-logo.svg';
 import { ReactComponent as ImportExportIcon } from '../assets/icons/import_export-24px.svg';
 import { ReactComponent as InfoIcon } from '../assets/icons/info-24px.svg';
 import { ReactComponent as ExpandedItemGroupIcon } from '../assets/icons/item-group-1.svg';
@@ -26,6 +27,7 @@ import { ReactComponent as KeyboardArrowDownIcon } from '../assets/icons/keyboar
 import { ReactComponent as KeyboardArrowUpIcon } from '../assets/icons/keyboard_arrow_up-24px.svg';
 import { ReactComponent as LibraryAddCheckIcon } from '../assets/icons/library_add_check-24px.svg';
 import { ReactComponent as MenuIcon } from '../assets/icons/menu-24px.svg';
+import { ReactComponent as MicrosoftLogo } from '../assets/icons/microsoft-logo.svg';
 import { ReactComponent as NewReleasesIcon } from '../assets/icons/new_releases-24px.svg';
 import { ReactComponent as NotificationsIcon } from '../assets/icons/notifications-24px.svg';
 import { ReactComponent as OnDemandVideoIcon } from '../assets/icons/ondemand_video-24px.svg';
@@ -61,6 +63,7 @@ export {
   EmailIcon,
   FeedbackIcon,
   FormatListNumberedIcon,
+  GoogleGLogo,
   ImportExportIcon,
   InfoIcon,
   ExpandedItemGroupIcon,
@@ -69,6 +72,7 @@ export {
   KeyboardArrowUpIcon,
   LibraryAddCheckIcon,
   MenuIcon,
+  MicrosoftLogo,
   NewReleasesIcon,
   NotificationsIcon,
   OnDemandVideoIcon,

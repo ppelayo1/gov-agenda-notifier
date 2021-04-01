@@ -1,13 +1,33 @@
 import React from 'react';
 import './LoginButton.scss';
 
-function LoginButton({provider, ...props}) {
+import { GoogleGLogo, MicrosoftLogo } from '../../utils/_icons';
+
+function LoginButton({ children, ...props }) {
+  if (!children) {
+    console.warn("You must pass a child to the LoginButton component.")
+    return null;
+  }
+
+  if (typeof children !== 'string') {
+    console.warn("You must provide a string as the child for LoginButton component.")
+    return null;
+  }
+  
+  const lowercasedProvider = children.toString().toLowerCase();
+  const capitalizedProvider = () => {
+    const firstLetterCapitalized = lowercasedProvider.slice(0,1).toUpperCase();
+    const restOfLettersLowerCased = lowercasedProvider.slice(1);
+    return firstLetterCapitalized + restOfLettersLowerCased;
+  }
+  
   return (
     <button className="login-button-container" {...props}>
       <div className="login-button-logo-container">
-        X
+        { lowercasedProvider === 'microsoft' && <MicrosoftLogo className="login-button-logo-svg" />}
+        { lowercasedProvider === 'google' && <GoogleGLogo className="login-button-logo-svg" />}
       </div>
-      Sign In with {provider}
+      Sign In with {capitalizedProvider()}
     </button>
   );
 }
