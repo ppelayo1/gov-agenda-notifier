@@ -2,6 +2,7 @@ import React from 'react';
 import './LoginButton.scss';
 
 import { GoogleGLogo, MicrosoftLogo } from '../../utils/_icons';
+import CustomButton from './CustomButton';
 
 function LoginButton({ children, ...props }) {
   if (!children) {
@@ -22,13 +23,13 @@ function LoginButton({ children, ...props }) {
   }
   
   return (
-    <button className="login-button-container" {...props}>
+    <CustomButton {...props}>
       <div className="login-button-logo-container">
         { lowercasedProvider === 'microsoft' && <MicrosoftLogo className="login-button-logo-svg" />}
         { lowercasedProvider === 'google' && <GoogleGLogo className="login-button-logo-svg" />}
       </div>
       Sign In with {capitalizedProvider()}
-    </button>
+    </CustomButton>
   );
 }
 

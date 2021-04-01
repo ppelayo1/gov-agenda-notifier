@@ -6,6 +6,7 @@ import MicrosoftLogin from 'react-microsoft-login';
 import LoginButton from './LoginButton'
 
 import cityLogo from '../../assets/SanJoseCityLogo.png';
+import CustomButton from './CustomButton';
 
 
 function AdminLogin() {
@@ -47,6 +48,7 @@ function AdminLogin() {
             children={<LoginButton>Microsoft</LoginButton>}
           />
         </div>
+        <CustomButton>Sign In</CustomButton>
       </div>
     </div>
   )

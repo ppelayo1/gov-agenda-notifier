@@ -1,0 +1,24 @@
+@import '../../utils/colors';
+
+.custom-button-container {
+  cursor: pointer;
+  background-color: $lightBronze;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+  font-size: 18px;
+  padding: 0.3em 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  min-height: 2.3em;
+
+  &:hover {
+    background-color: $cityBronze;
+  }
+}
