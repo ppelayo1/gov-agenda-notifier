@@ -35,9 +35,10 @@
   }
   hr {
     width: 365px;
-    border-width: 2px;
-    border-color: $cityBronze;
     margin: 30px auto;
+    border: none;
+    height: 2px;
+    background-color: $cityBronze;
   }
   .login-buttons-wrapper {
     //max-width: 215px;
@@ -48,5 +49,18 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: stretch;
+  }
+
+  .login-screen-or {
+    margin: 0 auto;
+    width: 365px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    span {
+      margin: 0 1em;
+    }
   }
 }
