@@ -8,6 +8,7 @@ import {
   useLazyQuery,
 } from '@apollo/client';
 import { GoogleLogin } from 'react-google-login';
+import MicrosoftLogin from 'react-microsoft-login';
 
 import { LOGIN_LOCAL, LOGIN_GOOGLE } from '../../graphql/graphql';
 import LocalStorageTerms from '../../constants/LocalStorageTerms';
@@ -19,6 +20,7 @@ import LoginContext from '../LoginContext/LoginContext';
 // global constant options
 const OPTIONS = {
   googleClientID: '794344810158-sani885h3b9sksk7oqi0cb3spit2271p.apps.googleusercontent.com',
+  microsoftClientID: 'd2dbfc8f-325c-46bf-a3c2-d1f2da795d9f',
 };
 
 function LoginHandler() {
@@ -42,6 +44,10 @@ function LoginHandler() {
     // eslint-disable-next-line no-console
     console.log(response);
     setOtherError(true);
+  };
+
+  const authHandler = (err, response) => {
+    console.log(err, response);
   };
 
   // This function makes the query call to perform the login
@@ -121,6 +127,7 @@ function LoginHandler() {
             onFailure={responseGoogle}
             cookiePolicy="single_host_origin"
           />
+          <MicrosoftLogin clientId={OPTIONS.microsoftClientID} authCallback={authHandler} />
           <div className="google-microsoft-login">
             <img
               src={microsoftIcon}
