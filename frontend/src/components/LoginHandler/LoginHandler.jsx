@@ -10,7 +10,7 @@ import {
 import { GoogleLogin } from 'react-google-login';
 import MicrosoftLogin from 'react-microsoft-login';
 
-import { LOGIN_LOCAL, LOGIN_GOOGLE } from '../../graphql/graphql';
+import { LOGIN_LOCAL, LOGIN_GOOGLE, LOGIN_MICROSOFT } from '../../graphql/graphql';
 import LocalStorageTerms from '../../constants/LocalStorageTerms';
 import ErrorMessagesGraphQL from '../../constants/ErrorMessagesGraphQL';
 import googleIcon from './assets/btn_google_signin_light_normal_web@2x.png';
@@ -37,6 +37,11 @@ function LoginHandler() {
     { onCompleted: (d) => { setData(d); }, onError: (e) => { setError(e); } });
   const loginGoogle = useLazyQuery(LOGIN_GOOGLE,
     { onCompleted: (d) => { setData(d); }, onError: (e) => { setError(e); }, fetchPolicy: 'network-only' });
+  const loginMicrosoft = useLazyQuery(LOGIN_MICROSOFT,
+    { onCompleted: (d) => { setData(d); }, onError: (e) => { setError(e); }, fetchPolicy: 'network-only' });
+
+  const { sessionStorage } = window;
+  sessionStorage.clear();
 
   // Response if the google connection attempt failed
   const responseGoogle = (response) => {
@@ -48,6 +53,10 @@ function LoginHandler() {
 
   const authHandler = (err, response) => {
     console.log(err, response);
+    console.log(response.idToken.rawIdToken);
+
+    localStorage.setItem(LocalStorageTerms.TOKEN, response.idToken.rawIdToken);
+    loginMicrosoft[0]();
   };
 
   // This function makes the query call to perform the login
@@ -68,11 +77,15 @@ function LoginHandler() {
   useEffect(() => {
     // Successful sign in
     if (data) {
+      console.log(data);
       if (Object.prototype.hasOwnProperty.call(data, 'loginGoogle')) {
         window.localStorage.setItem(LocalStorageTerms.TOKEN, data.loginGoogle.token);
       }
       if (Object.prototype.hasOwnProperty.call(data, 'loginLocal')) {
         window.localStorage.setItem(LocalStorageTerms.TOKEN, data.loginLocal.token);
+      }
+      if (Object.prototype.hasOwnProperty.call(data, 'loginMicrosoft')) {
+        window.localStorage.setItem(LocalStorageTerms.TOKEN, data.loginMicrosoft.token);
       }
       window.localStorage.setItem(LocalStorageTerms.SIGNED_IN, true);
 
